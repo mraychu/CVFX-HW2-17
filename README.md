@@ -31,7 +31,7 @@
 
 此方法主要利用卷積神經網絡（利用 pretrain 的 Pre-trained VGG network model）來分別做 content 和 style 的 reconstruction，而在合成時考慮 content loss 與 style loss 的最小化，使得合成出來的圖像會保證在 content 和 style 的 reconstruction 上更準確。
 
-<img src="./neural_style/flowchart.png" width="400px" />
+<img src="./neural_style/flowchart.png" width="526px" />
 
 此方法分為四個部分（流程圖如上）：
 1. Content Reconstruction
@@ -43,13 +43,13 @@
 3. Content Loss
     下圖為計算公式，其中 F^l 表示產生的 Content Representation 在第 l 層的數據，則 P^l 表示原始圖片在第 l 層的數據，然後試圖 minimize 兩者的 Least Square Error。
 
-<img src="./neural_style/content_loss.png" width="250px" />
+<img src="./neural_style/content_loss.png" width="250px" align="center" />
 
 4. Style Loss
     下圖為計算公式，其中 A^l 表示原始 style image 在第 l 的數據，而 G^l 表示產生的 Style Representation 在第 l 層的數據，同樣試圖 minimize 兩者的 Least Square Error，只是要額外包含每一層輸出的 errors 之和。
     
-<img src="./neural_style/style_loss.png" width="250px" />
-<img src="./neural_style/style_loss2.png" width="250px" />
+<img src="./neural_style/style_loss.png" width="250px" align="center" />
+<img src="./neural_style/style_loss2.png" width="250px" align="center" />
 
 以下為我們的圖片使用 neural-style Algo 的圖片結果。
 <img/>

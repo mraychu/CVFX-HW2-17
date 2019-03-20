@@ -1,2 +1,50 @@
 # CVFX-HW2-17
-Style Transfer
+### 1. Training MUNIT
+由於一百萬個 iteration 實在太多，且不一定全部 train 完結果才是最好。因此，我們認為 train 到八十幾萬的效果是最好的。
+<img src="./TrainingProcess/1.png" width="600px" />
+
+### 2. Inference one image in multiple style
+> 我們選擇 edges2handbags 這個 dataset，因為此 dataset 的多樣性較高，較容易分辨出好壞。以下為原圖以及五張經 style transfer 的結果圖
+
+<img src="./edges2handbags/result/e2h.png" width="600px" />
+
+### 3. Compare with other method
+目標：首先給定兩張影像，一張為 style image，另一張為 target image，使得能夠保存 target image 中的內容，但套用 style image 中的風格，最後 generated image 為一張全新的 stylized image，以達到 style transfer 的效果，以下介紹兩種方法來做比較。
+
+#### Method 1: [FastPhotoStyle](https://github.com/NVIDIA/FastPhotoStyle)
+
+此方法分為兩個步驟（流程圖如下）：
+1. Stylization
+    此步驟會分析 style image 的風格，並套用至 target image，其中使用較特別的 Photo WCT (Whitening and Coloring Transform) 方法來完成轉換，效果會比原先的 WCT 還要好，但因為合成的關係，還是存在一些 aliasing。
+2. Smoothing
+    此步驟為了讓結果圖片看起來更自然，則會再輸入目標以及含有 aliasing 的照片，來比對圖中鄰近的區域，將相近的像素套入相同的風格，使得畫面更為滑順，發揮降低破綻的效果。
+
+<img src="./FastPhotoStyle/flowchart.png" width="600px" />
+
+以下為我們的圖片使用 FastPhotoStyle Algo 的圖片結果。
+<img/>
+
+#### Method 2: [neural-style](https://github.com/anishathalye/neural-style)
+
+此方法主要利用卷積神經網絡（利用 pretrain 的 Pre-trained VGG network model）來分別做 content 和 style 的 reconstruction，而在合成時考慮 content loss 與 style loss 的最小化，使得合成出來的圖像會保證在 content 和 style 的 reconstruction 上更準確。
+
+<img src="./neural_style/flowchart.png" width="600px" />
+
+此方法分為四個部分（流程圖如上）：
+1. Content Reconstruction
+    下圖中下面部分是 Content Reconstruction 對應於 CNN 中的 a、b、c、d 以及 e 層，model 最開始標了 Content Representations 是代表經過了 Pre-trained 之後的 VGG network model 的圖像數據，主要用來生成圖像的 Content Representations。經過了五層卷積網絡來做 Content 的重構之後，從中可以觀察出在前 3 層的 Content Reconstruction 效果比較好，後面兩層丟失了部分細節，反而保留了較 high level 的細節。
+
+2. Style Reconstruction
+    此方法的重建與前者雷同，不同點在於 a、b、c、d、e 的處理方式不同。Style Represention 的 Reconstruction 是在 CNN 不同的子集上來計算的，這樣重建的 style 會在各個不同的尺度上更加匹配圖像本身的 style，因此忽略場景的全局信息。
+
+3. Content Loss
+    下圖為計算公式，其中 F^l 表示產生的 Content Representation 在第 l 層的數據，則 P^l 表示原始圖片在第 l 層的數據，然後試圖 minimize 兩者的 Least Square Error。
+
+<img/>
+
+4. Style Loss
+    下圖為計算公式，其中 A^l 表示原始 style image 在第 l 的數據，而 G^l 表示產生的 Style Representation 在第 l 層的數據，同樣試圖 minimize 兩者的 Least Square Error。
+<img/>
+
+以下為我們的圖片使用 neural-style Algo 的圖片結果。
+<img/>

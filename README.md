@@ -1,7 +1,10 @@
 # CVFX-HW2-17
 ### 1. Training MUNIT
-由於一百萬個 iteration 實在太多，且不一定全部 train 完結果才是最好。因此，我們認為 train 到八十幾萬的效果是最好的。
+由於一百萬個 iteration 實在太多，且不一定全部 train 完結果才是最好。因此，我們認為 train 到八十幾萬的效果是最好的。\
+
 <img src="./TrainingProcess/1.png" width="600px" />
+<img src="./TrainingProcess/2.png" width="600px" />
+<img src="./TrainingProcess/3.png" width="600px" />
 
 ### 2. Inference one image in multiple style
 > 我們選擇 edges2handbags 這個 dataset，因為此 dataset 的多樣性較高，較容易分辨出好壞。以下為原圖以及五張經 style transfer 的結果圖
@@ -40,11 +43,13 @@
 3. Content Loss
     下圖為計算公式，其中 F^l 表示產生的 Content Representation 在第 l 層的數據，則 P^l 表示原始圖片在第 l 層的數據，然後試圖 minimize 兩者的 Least Square Error。
 
-<img/>
+<img src="./neural_style/content_loss.png" width="600px" />
 
 4. Style Loss
     下圖為計算公式，其中 A^l 表示原始 style image 在第 l 的數據，而 G^l 表示產生的 Style Representation 在第 l 層的數據，同樣試圖 minimize 兩者的 Least Square Error。
-<img/>
+    
+<img src="./neural_style/style_loss.png" width="600px" />
+<img src="./neural_style/style_loss2.png" width="600px" />
 
 以下為我們的圖片使用 neural-style Algo 的圖片結果。
 <img/>

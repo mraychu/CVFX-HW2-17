@@ -18,7 +18,7 @@
 
 經過上面的發現我們就將 style input 改為 random，可以發現雖然 output 有點類似但在細節上還是有差異。
 
-> 我們另外跑了 summer2winter 這個 dataset，由於 dataset 較大導致我們沒有跑完，因為一百萬個 iteration 要跑很久，不過可以觀察到在 500000 個 iteration 的時候有最好的表現。
+> 由於我們覺得使用 edges2handbags 這個 dataset 跑出來的結果很不理想，所以另外跑了 summer2winter 這個 dataset，同樣 dataset 較大導致我們沒有跑完，因為一百萬個 iteration 要跑很久，不過可以觀察到在 500000 個 iteration 的時候有最好的表現。
 
 ![image alt](https://media.giphy.com/media/LTEZPaRCsMpEcFgdBa/giphy.gif)
 

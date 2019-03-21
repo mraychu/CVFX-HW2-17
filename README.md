@@ -33,7 +33,7 @@
 
 以下為我們的圖片使用 FastPhotoStyle Algo 的圖片結果。
 
-<img src="./FastPhotoStyle/result.png" width="526px"/>
+<img src="./FastPhotoStyle/result.png" width="526px" height="381px" />
 
 #### Method 2: [neural-style](https://github.com/anishathalye/neural-style)
 
@@ -51,13 +51,13 @@
 3. Content Loss
     下圖為計算公式，其中 F^l 表示產生的 Content Representation 在第 l 層的數據，則 P^l 表示原始圖片在第 l 層的數據，然後試圖 minimize 兩者的 Least Square Error。
 
-<img src="./neural_style/content_loss.png" width="250px" align="center" />
+<img src="./neural_style/content_loss.png" width="250px" />
 
 4. Style Loss
     下圖為計算公式，其中 A^l 表示原始 style image 在第 l 的數據，而 G^l 表示產生的 Style Representation 在第 l 層的數據，同樣試圖 minimize 兩者的 Least Square Error，只是要額外包含每一層輸出的 errors 之和。
     
-<img src="./neural_style/style_loss.png" width="250px" align="center" />
-<img src="./neural_style/style_loss2.png" width="250px" align="center" />
+<img src="./neural_style/style_loss.png" width="250px" />
+<img src="./neural_style/style_loss2.png" width="250px" />
 
 以下為我們的圖片使用 neural-style Algo 的圖片結果。
 

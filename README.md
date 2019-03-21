@@ -7,13 +7,19 @@
 <img src="./TrainingProcess/3.png" width="526" height="381px" />
 
 ### 2. Inference one image in multiple style
-> 我們選擇 edges2handbags 這個 dataset，因為此 dataset 的多樣性較高，較容易分辨出好壞。以下為原圖以及五張經 style transfer 的結果圖
+> 我們選擇 edges2handbags 這個 dataset，因為此 dataset 的多樣性較高，較容易分辨出好壞。以下為原圖以及五張經 style transfer 的結果圖，content 欄中左邊是 content input，右邊是原 pair 圖。
 
 <img src="./edges2handbags/result/e2h.png" width="526px" />
 <img src="./edges2handbags/result/h2e.png" width="526px" />
+
+上圖為 content input 給予 bag，style input 給予不同 edge 圖，可以發現 output 的結果差異並不大，我們猜測可能是 edge 的 style 都會落到相同的 domain 導致輸出結果幾乎一樣，我們也有將 code 中 image style encode 的結果進行比對，並發現這五張的數值如同我們的假設是相同的 。
+
 <img src="./edges2handbags/result/h2e_2.png" width="526px" />
+
+經過上面的發現我們就將 style input 改為 random，可以發現雖然 output 有點類似但在細節上還是有差異。
+
 ### 3. Compare with other method
-目標：首先給定兩張影像，一張為 style image，另一張為 target image，使得能夠保存 target image 中的內容，但套用 style image 中的風格，最後 generated image 為一張全新的 stylized image，以達到 style transfer 的效果，以下介紹兩種方法來做比較。
+> 目標：首先給定兩張影像，一張為 style image，另一張為 target image，使得能夠保存 target image 中的內容，但套用 style image 中的風格，最後 generated image 為一張全新的 stylized image，以達到 style transfer 的效果，以下介紹兩種方法來做比較。
 
 #### Method 1: [FastPhotoStyle](https://github.com/NVIDIA/FastPhotoStyle)
 
@@ -26,7 +32,8 @@
 <img src="./FastPhotoStyle/flowchart.png" width="526px" />
 
 以下為我們的圖片使用 FastPhotoStyle Algo 的圖片結果。
-<img/>
+
+<img src="./FastPhotoStyle/result.png" width="526px"/>
 
 #### Method 2: [neural-style](https://github.com/anishathalye/neural-style)
 
@@ -53,12 +60,16 @@
 <img src="./neural_style/style_loss2.png" width="250px" align="center" />
 
 以下為我們的圖片使用 neural-style Algo 的圖片結果。
+
 <img/>
 
 #### 分析比較：
+
 我們觀察出 FastPhotoStyle 較適合處理一般風景照或是藝術照，因為這些風格的照片沒有較特別的 pattern。由於此方法的第二步是 smoothing，會採用鄰近 pixels 的風格，當遇到相同的 pattern 較多時，圖片經過 style transfer 之後反而會壞掉，如下圖。
 
 <img src="./FastPhotoStyle/failure_case.png" width="250px" />
+
+而我們發現 neural-style 的方法較適合人物、山水、建築等等大場景內容，並不適合小物件內容，例如包包、鞋子等，失敗的結果如 Method 2 所提供的圖片。
 
 ### 4. Conclusion
 藉由這次的作業了解到了風格轉換並不像以前只停留在一對一的圖片轉換，一張圖片也可以被拆解為 content code 和 style code，跳脫了傳統以 pixel 或 image level 來看待風格轉換的角度，在運用其他種方法來進行風格轉換時，會發現在不同領域，如 edge2bag 和 summer2winter，在FastPhotoStyle 中的範例大部分都是使用風景圖，圖片結果用肉眼來看還不錯，然而用 edge2bag 的 data 來測試會發現完全得不到好的結果，只有圖片顏色的稍稍改變，看來不同的方法還是有著適合的圖片類型。

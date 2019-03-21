@@ -33,7 +33,7 @@
 
 以下為我們的圖片使用 FastPhotoStyle Algo 的圖片結果。
 
-<img src="./FastPhotoStyle/result.png" width="526px" height="381px" />
+<img src="./FastPhotoStyle/result.png" width="500px" height="300px" />
 
 #### Method 2: [neural-style](https://github.com/anishathalye/neural-style)
 

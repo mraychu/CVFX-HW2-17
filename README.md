@@ -18,6 +18,12 @@
 
 經過上面的發現我們就將 style input 改為 random，可以發現雖然 output 有點類似但在細節上還是有差異。
 
+> 我們另外跑了 summer2winter 這個 dataset，由於 dataset 較大導致我們沒有跑完，因為一百萬個 iteration 要跑很久，不過可以觀察到在 500000 個 iteration 的時候有最好的表現。
+
+![image alt](https://media.giphy.com/media/LTEZPaRCsMpEcFgdBa/giphy.gif)
+
+
+
 ### 3. Compare with other method
 > 目標：首先給定兩張影像，一張為 style image，另一張為 target image，使得能夠保存 target image 中的內容，但套用 style image 中的風格，最後 generated image 為一張全新的 stylized image，以達到 style transfer 的效果，以下介紹兩種方法來做比較。
 
@@ -59,9 +65,12 @@
 <img src="./neural_style/style_loss.png" width="250px" />
 <img src="./neural_style/style_loss2.png" width="250px" />
 
-以下為我們的圖片使用 neural-style Algo 的圖片結果。
+以下為我們的圖片使用 neural-style Algo 的圖片結果以及 loss 數據。
 
 <img src="./neural_style/result.png" width="263px" height="390px" />
+
+![](https://i.imgur.com/0beyLQn.png)
+
 
 #### 分析比較：
 
